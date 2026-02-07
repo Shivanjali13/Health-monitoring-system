@@ -4,10 +4,11 @@ from django.conf import settings
 # Create your models here.
 
 class HealthMetric(models.Model):
-    user = models.ForeignKey(settings.Auth_USER_MODEL, on_delete=models.CASCADE, related_name='health_metrics')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='health_metrics')
     weight = models.DecimalField(max_digits=5, decimal_places=2, help_text="Weight in kg")
     blood_pressure_systolic = models.IntegerField(help_text="Systolic blood pressure in mmHg")
     blood_pressure_diastolic = models.IntegerField(help_text="Diastolic blood pressure in mmHg")
+    blood_glucose = models.DecimalField(max_digits=5, decimal_places=2, help_text="Blood glucose level in mg/dL")
     heart_rate = models.IntegerField(help_text="Heart rate in bpm")
     recorded_at = models.DateTimeField(auto_now_add=True)
     steps = models.IntegerField(default=0, help_text="Number of steps taken daily")
@@ -27,7 +28,7 @@ class Anomaly(models.Model):
         ('MEDIUM', 'Medium'),
         ('HIGH', 'High'),
     ]
-    user = models.ForeignKey(settings.Auth_USER_MODEL, on_delete=models.CASCADE, related_name='anomalies')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='anomalies')
     metric = models.ForeignKey(HealthMetric, on_delete=models.CASCADE, related_name='anomalies')
     value = models.DecimalField(max_digits=5, decimal_places=2, help_text="Value of the anomalous metric")
     detected_at = models.DateTimeField(auto_now_add=True)
@@ -48,7 +49,7 @@ class Anomaly(models.Model):
         ('HIGH', 'High'),
     ]
     
-    user = models.ForeignKey(settings.Auth_USER_MODEL, on_delete=models.CASCADE, related_name='anomalies')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='anomalies')
     metric = models.ForeignKey(HealthMetric, on_delete=models.CASCADE, related_name='anomalies')
     metric_name = models.CharField(max_length=50)
     severity = models.CharField(max_length=10, choices=SEVERITY_CHOICES)
