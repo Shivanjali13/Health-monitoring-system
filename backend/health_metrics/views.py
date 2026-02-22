@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from django.core.cache import cache
 from .models import HealthMetric, Anomaly
 from .serializers import HealthMetricSerializer, HealthMetricCreateSerializer, AnomalySerializer
+from analytics.ml.anomaly_detector import AnomalyDetector
 
 class HealthMetricListCreateView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
@@ -20,8 +21,27 @@ class HealthMetricListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         metric = serializer.save(user=self.request.user)
         # Trigger anomaly detection (we'll implement this in ML section)
-        from analytics.tasks import detect_anomalies
-        detect_anomalies.delay(metric.id)
+        try:
+            from analytics.ml.anomaly_detector import AnomalyDetector
+
+            health_metrics = HealthMetric.objects.filter(
+                user=self.request.user
+            ).order_by('-recorded_at')
+        
+            detector = AnomalyDetector()
+            detector.detect_anomalies(
+                self.request.user, 
+                metric, 
+                health_metrics
+            )
+        
+        # Anomalies are automatically created in detect_anomalies
+        
+        except Exception as e:
+        # Log error but don't fail the request
+            print(f"Anomaly detection error: {e}")
+        # from analytics.tasks import detect_anomalies
+        # detect_anomalies.delay(metric.id)
 
 class HealthMetricDetailView(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticated,)
