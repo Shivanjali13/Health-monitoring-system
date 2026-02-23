@@ -1,0 +1,163 @@
+.tips-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.tips-container h1 {
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.no-tips {
+  background: white;
+  padding: 4rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.no-tips p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.tip-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tip-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tip-card.priority-high {
+  border-color: #f56565;
+}
+
+.tip-card.priority-medium {
+  border-color: #ed8936;
+}
+
+.tip-card.priority-low {
+  border-color: #48bb78;
+}
+
+.tip-card.read {
+  opacity: 0.7;
+}
+
+.tip-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.tip-icon {
+  font-size: 1.5rem;
+}
+
+.tip-category {
+  flex: 1;
+  color: #667eea;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.tip-priority {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.tip-priority.priority-high {
+  background: #fee;
+  color: #c53030;
+}
+
+.tip-priority.priority-medium {
+  background: #fffaf0;
+  color: #c05621;
+}
+
+.tip-priority.priority-low {
+  background: #f0fdf4;
+  color: #276749;
+}
+
+.tip-content {
+  margin-bottom: 1rem;
+}
+
+.tip-content p {
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tip-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.tip-date {
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.mark-read-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.mark-read-btn:hover {
+  background: #5568d3;
+}
+
+.read-badge {
+  color: #48bb78;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.tips-info {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tips-info h3 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.tips-info p {
+  color: #666;
+  line-height: 1.8;
+}

@@ -1,0 +1,15 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow:
+```
+
+---
+
+## **Check Your public Folder Structure**
+
+Your `frontend/public/` folder should now have:
+```
+frontend/public/
+├── index.html       ✅ Just created
+├── manifest.json    ✅ Just created
+└── robots.txt       ✅ Just created
